@@ -9,7 +9,7 @@ This work takes the large civil airliner Boeing 747-100 as the research object, 
 * 4) 模拟飞机的横向和纵向自动驾驶仪，以及飞机飞行的一般过程，并由此得出结论。  
 经过仿真验证，结果表明：采用以上方法设计的无人机自动控制系统能够准确地达到预期的控制指标，能较好地保证飞机飞行过程中的安全性和稳定性。
 
-版本：Matlab2020a
+版本：Matlab2020a  
 具体内容：chap2 坐标系  
 chap3 运动学与动力学  
 chap4 力与力矩  
