@@ -10,4 +10,12 @@ This work takes the large civil airliner Boeing 747-100 as the research object, 
 经过仿真验证，结果表明：采用以上方法设计的无人机自动控制系统能够准确地达到预期的控制指标，能较好地保证飞机飞行过程中的安全性和稳定性。
 
 版本：Matlab2020a
-主要参考书目：Beard R. W., McLain T. W. Small Unmanned Aircraft: Theory and Practice, Princeton University Press, 2012. 主要程序按照该书2-6章节设计，飞机参数采用NASA的Boeing747-100数据（Heffley R. K., and Jewell N. F. Aircraft Handling Qualities Data – NASA CR 2144, Dec. 1972. 350 с.）。
+具体内容：chap2 坐标系  
+chap3 运动学与动力学  
+chap4 力与力矩  
+chap5 线性设计模型  
+chap6 基于连续闭环的自动驾驶仪设计  
+paramaters Boeing747-100客机的空气动力学及机身参数  
+tools 欧拉坐标系变换、四元数等数学工具  
+Nathan-Madsen auto landing 降落过程  
+主要参考书目：Beard R. W., McLain T. W. Small Unmanned Aircraft: Theory and Practice, Princeton University Press, 2012. 主要程序按照该书2-6章节设计。 飞机参数采用NASA的Boeing747-100数据（Heffley R. K., and Jewell N. F. Aircraft Handling Qualities Data – NASA CR 2144, Dec. 1972. 350 с.）。
