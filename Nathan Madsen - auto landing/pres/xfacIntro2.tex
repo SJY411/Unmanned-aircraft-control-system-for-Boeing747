@@ -1,0 +1,222 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% xfacIntro
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% PREAMBLE
+\documentclass[10pt]{beamer}
+\usetheme{Warsaw}%Berkeley
+%\usecolortheme{seagull}
+
+%%% General
+\usepackage{fixltx2e}
+
+%%% Graphics
+\usepackage{graphicx}
+\usepackage{wallpaper}
+\usepackage[absolute,overlay,verbose]{textpos}
+
+%%% Figures
+\usepackage[font=footnotesize]{caption}
+\usepackage{subcaption}
+
+\title{Introduction to X-Factor Calculation for RapidSCAT }
+\author{Nathan Madsen}
+\institute{MERS Lab\\Brigham Young University}
+\date{May 21, 2013}
+
+\begin{document}
+{
+  \usebackgroundtemplate{%
+    \parbox[c][\paperheight][c]{\paperwidth}{%
+      \begin{textblock*}{20mm}(18mm,47mm)
+        \centering\includegraphics[height=1.2in]{img/MERSLogo.png}
+      \end{textblock*}
+      \begin{textblock*}{20mm}(83mm,50mm)
+        \centering\includegraphics[height=1in]{img/BYULogo.png}
+      \end{textblock*}
+    }
+  }
+  \frame{\titlepage}
+}
+\section{Introduction}
+\begin{frame}
+  \frametitle{RapidSCAT}
+
+  \begin{columns}[c]
+
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item Primary Goal - ``to demonstrate the agile reuse of flight-worthy hardware''
+    \item Continue the QuikSCAT data record  
+    \item Use hardware created for the QuikSCAT project
+    \item Mount on the International Space Station (ISS)
+    \end{itemize}
+
+    \column{.5\textwidth}
+    \begin{figure}[h]
+      \includegraphics[width=0.75\textwidth]{img/RapidScat3-full.jpg}
+      \caption{Detail of RapidSCAT aboard the ISS}
+      \label{RSonISS}
+    \end{figure}
+
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{X-factor for QuikSCAT}
+  \begin{columns}[c]
+
+    \column{.5\textwidth}
+    \begin{figure}[h]
+      \includegraphics[width=0.75\textwidth]{img/300px-QuikScat.jpg}
+      \caption{Seawinds aboard QuikSCAT}
+      \label{quikSCAT}
+    \end{figure}
+
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item Also can demonstrate the agile reuse of flight-worthy software
+    \item X-factor processing code for QuikSCAT originally developed at MERS
+    \item Under contract to update the QuikSCAT code for RapidSCAT before its launch
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\section{Previous Work}
+
+
+\begin{frame}
+  \frametitle{The Radar Equation}
+
+  \begin{equation}
+    P_r = \int \limits_A 
+    \frac{\lambda^2 P_{t}G^2 \sigma^o \mathrm{d}A }{R^4 (4\pi)^3}
+  \end{equation}
+  
+  \begin{equation}
+    P_r =\sigma^o \frac{\lambda^2 }{(4\pi )^3} \sum_{i\in \cal{F}} 
+    \frac{P_{ti}G_i^2  \delta A_i}{R_i^4}
+  \end{equation}
+  
+  \begin{equation}
+    \sigma^o=\frac{P_r}{X}
+  \end{equation}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{X-Table}
+    \begin{itemize}
+    \item Was not feasible to calculate $X$ for each pulse (5.4 ms)
+    \item Table produced for 32 orbit positions by 36 azimuth angles
+    \item In order not to change processing code a table still has to be used
+    \end{itemize}
+  
+    \begin{figure}[h]
+      \begin{subfigure}[h]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/X_vs_az.eps}
+        \caption{Variation of X with azimuth angle for slices 2 and 5.}
+      \end{subfigure}
+      ~
+      \begin{subfigure}[h]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/X_vs_ti.eps}
+        \caption{Variation of X with orbit time for slices 2 and 5.}
+      \end{subfigure}
+      \label{filter}
+    \end{figure}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Perturbation}
+    \begin{itemize}
+    \item Perturbations in attitude can change the value of $X$
+    \item Correlation found between $\Delta f$ and $\Delta X$
+    \item $\Delta f$ is the difference between baseband frequency at the bore-sight
+      for the nominal case and for the perturbed case
+    \end{itemize}
+  
+    \begin{figure}[h]
+      \includegraphics[width=0.5\textwidth]{img/X_vs_f.eps}
+      \caption{Variations in $X$ for slice 5 using 50 different combinations of expected 
+      perturbations as a function of $\Delta f$}
+      \label{RSonISS}
+    \end{figure}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{RapidScat Orbit}
+  \begin{columns}[c]
+
+    \column{.75\textwidth}
+    
+    \begin{figure}[tbp]
+      \centering
+      \includegraphics[width=\textwidth]{./img/{rpyOrbit}.png}
+      \caption{Roll, pitch, and yaw of the ISS over one orbit. This behavior is
+        typical of any of the orbits, that we have data for.}
+      \label{rpyOrb}
+    \end{figure}
+
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{RapidScat Orbit Cont'd}
+  \begin{columns}[c]
+
+    \column{.75\textwidth}
+    
+    \begin{figure}[tbp]
+      \centering
+      \includegraphics[width=\textwidth]{./img/{orbElOrbit}.png}
+      \caption{Five orbital elements and nodal period of the ISS over one orbit. This behavior is
+        typical of any of the orbits, that we have data for.}
+      \label{orbElOrbit}
+    \end{figure}
+
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Range-Doppler Binning Tables}
+  \begin{columns}[c]
+
+    \column{.5\textwidth}
+    \begin{figure}[h]
+    \includegraphics[width=\textwidth]{./img/{trueXStripeRev01-1zoomed}.png}
+    \caption{$X$ in dB for slice 12 as a function of azimuth angle and orbit time using the range
+      and Doppler tracking tables. Calculated for each of the first 379 seconds of the orbit.}
+    \label{zoomed}
+    \end{figure}
+
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item Range-Doppler tracking table used to determine center of processor response
+    \item 256 sets of parameters for equally spaced orbit times
+    \item Parameters define a sine function for azimuth variation
+    \item Separate sets of parameters for Doppler shift and time of flight
+    \item Causes discontinuities in $X$ with orbit time
+    \end{itemize}
+  \end{columns}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Future Work}
+  \begin{itemize}
+    \item Get the table to work accurately for the the orbit it was created with
+    \item Investigate how long a table like that would be accurate
+    \item Investigate the creation of a super table that could use a parameter such as height and
+      generate tables for that parameter
+  \end{itemize}
+
+\end{frame}
+
+
+
+\end{document}
